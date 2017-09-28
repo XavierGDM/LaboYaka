@@ -10,11 +10,50 @@
 			<query>select c from Categorie as c</query>
 		</named-query>
 		
+		<named-query name="getAllSousCategories">
+			<query>select s from SousCategorie as s</query>
+		</named-query>
+		
+		<named-query name="getSousCategoriesById">
+			<query>select s from SousCategorie as s where s.categorie.id = :id</query>
+		</named-query>
+		
+		<named-query name="getProduitsById">
+			<query>select p from Produit as p where p.sousCategorie.id = :id</query>
+		</named-query>
+<!-- 		<named-query name="getCategorieById"> -->
+<!-- 			<query>select c from Categorie as c where c.id = </query> -->
+<!-- 		</named-query> -->
+		
 		<entity class="be.steformations.xb.labo.yaka.beans.Categorie" name="Categorie">
 		<table name="categories" />
 		<attributes>
 			<id name="id"><column name="cat_id"/><generated-value strategy="IDENTITY"/></id>
 			<basic name="nom"><column name="cat_nom"/></basic>
+		</attributes>
+		</entity>
+		
+		<entity class="be.steformations.xb.labo.yaka.beans.SousCategorie" name="SousCategorie">
+		<table name="sous_categories" />
+		<attributes>
+			<id name="id"><column name="sscat_id"/><generated-value strategy="IDENTITY"/></id>
+			<basic name="nom"><column name="sscat_nom"/></basic>
+			<basic name="scat_stat"><column name="sscat_stat"/></basic>
+			<many-to-one name="categorie"><join-column name="sscat_fk_categories"/></many-to-one>
+		</attributes>
+		</entity>
+		
+		<entity class="be.steformations.xb.labo.yaka.beans.Produit" name="Produit">
+		<table name="produits" />
+		<attributes>
+			<id name="id"><column name="prod_id"/><generated-value strategy="IDENTITY"/></id>
+			<basic name="nom"><column name="prod_nom"/></basic>
+			<basic name="vignette"><column name="prod_vignette"/></basic>
+			<basic name="image"><column name="prod_image"/></basic>
+			<basic name="desc_courte"><column name="prod_descr_courte"/></basic>
+			<basic name="desc_longue"><column name="prod_descr_longue"/></basic>
+			<basic name="prod_stat"><column name="prod_stat"/></basic>
+			<many-to-one name="sousCategorie"><join-column name="prod_fk_sous_categories"/></many-to-one>
 		</attributes>
 		</entity>
 		

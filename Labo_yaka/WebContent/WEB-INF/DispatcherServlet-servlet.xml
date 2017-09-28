@@ -10,6 +10,6 @@
         http://www.springframework.org/schema/context/spring-context.xsd">
 
 	<!-- Recherche des annotations de configuration dans ce package (et sous-packages) -->
-    <context:component-scan base-package="" />
+    <context:component-scan base-package="be.steformations.xb.labo.yaka" />
 
 </beans>
