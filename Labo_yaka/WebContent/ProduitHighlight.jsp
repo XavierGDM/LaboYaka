@@ -5,26 +5,24 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Sous-Categories Yaka</title>
+<title>Infos Produit</title>
 </head>
 <body>
-
-<a href="${pageContext.request.contextPath}/spring/categories"><h1>YAKA</h1></a>
+	<h1>YAKA</h1>
 
 <fieldset>
-	<legend>Choisir une sous-categorie</legend>
-		<c:set var="sousCategorie" value="${requestScope['sousCategories']}"></c:set>
+	<legend>infos produit</legend>
+		<c:set var="produits" value="${requestScope['produits']}"></c:set>
 		<ul>
-			<c:forEach var="s" items="${sousCategories}">
+			<c:forEach var="p" items="${produits}">
 				<li>
-					<a href="${pageContext.request.contextPath}/spring/produits?scateg=${s.id}">
-						<c:out value="${s.nom}" />					
-					</a>
+					<c:out value="${p.nom}" /><br/>
+					<img src="${pageContext.request.contextPath}/images/${p.vignette}">	<br/>
+					<c:out value="${p.desc_courte }"/>	<br/>	
+					<hr/>	
 				</li>			
 			</c:forEach>
 		</ul>
 </fieldset>
-
-
 </body>
 </html>

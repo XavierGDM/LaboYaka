@@ -14,12 +14,18 @@
 			<query>select s from SousCategorie as s</query>
 		</named-query>
 		
+<!-- 		l'id utilisé est celui de la categorie  -->
 		<named-query name="getSousCategoriesById">
 			<query>select s from SousCategorie as s where s.categorie.id = :id</query>
 		</named-query>
 		
+<!-- 		l'id utilisé est celui de la sous-categorie  -->
 		<named-query name="getProduitsById">
 			<query>select p from Produit as p where p.sousCategorie.id = :id</query>
+		</named-query>
+		
+		<named-query name="getProduitByHisId">
+			<query>select p from Produit as p where p.id = :id</query>
 		</named-query>
 <!-- 		<named-query name="getCategorieById"> -->
 <!-- 			<query>select c from Categorie as c where c.id = </query> -->

@@ -1,6 +1,7 @@
 package be.steformations.xb.labo.yaka.dao.jpa;
 
 import be.steformations.xb.labo.yaka.beans.Categorie;
+import be.steformations.xb.labo.yaka.beans.Produit;
 import be.steformations.xb.labo.yaka.beans.SousCategorie;
 
 @org.springframework.stereotype.Service
@@ -30,6 +31,12 @@ public class GestionnaireYaka {
 	public Object getSousCategoriesById(int id) {
 		return this.em.createNamedQuery("getSousCategoriesById", SousCategorie.class).setParameter("id", id).getResultList();
 	}
+
+	public Object getProduitsById(int id) {
+		return this.em.createNamedQuery("getProduitsById", Produit.class).setParameter("id", id).getResultList();
+	}
 	
-	
+	public Object getProduitByHisId(int id) {
+		return this.em.find(Produit.class, id); 
+	}
 }
