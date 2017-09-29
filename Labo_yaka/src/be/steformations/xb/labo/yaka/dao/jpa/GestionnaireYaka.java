@@ -8,14 +8,8 @@ import be.steformations.xb.labo.yaka.beans.SousCategorie;
 @org.springframework.context.annotation.Scope("application")
 public class GestionnaireYaka {
 
-	
 	private javax.persistence.EntityManager em;
-	
-//	public GestionnaireYaka(javax.persistence.EntityManager em) {
-//		super();
-//		this.em = em;
-//	}
-	
+		
 	public GestionnaireYaka() {
 		this.em = javax.persistence.Persistence.createEntityManagerFactory("postgresql_eclipselink").createEntityManager();
 	}

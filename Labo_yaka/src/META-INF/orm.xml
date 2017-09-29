@@ -63,6 +63,15 @@
 		</attributes>
 		</entity>
 		
+<!-- 		<entity class="be.steformations.xb.labo.yaka.beans.Caracteristique" name="Caracteristique"> -->
+<!-- 		<table name="caracteristiques"/> -->
+<!-- 		<attributes> -->
+<!-- 			<id name="id"><column name="car_id"/><generated-value strategy="IDENTITY"/></id> -->
+<!-- 			<basic name="valeur"><column name="car_valeur"/></basic> -->
+<!-- 			<many-to-one name=""></many-to-one> -->
+<!-- 		</attributes> -->
+<!-- 		</entity> -->
+
 </entity-mappings>
 	
 <!-- 	<access>FIELD</access> utilisation ou des setters (PROPERTY) des classes des entités -->

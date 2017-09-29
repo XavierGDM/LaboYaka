@@ -16,7 +16,7 @@
 		<c:set var="i" value="${requestScope['infosProduit']}"></c:set>
 			<c:out value="${i.nom}" /><br/>
 			<img src="${pageContext.request.contextPath}/images/${i.image}"><br/>
-			<c:out escapeXml="false" value="${i.desc_longue }"/>	<br/>
+			<c:out escapeXml="false" value="${i.desc_longue }"/><br/>
 			<hr/>
 </fieldset>
 
