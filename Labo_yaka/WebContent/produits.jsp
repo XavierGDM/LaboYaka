@@ -19,13 +19,13 @@
 				<li>
 					<c:out value="${p.nom}" /><br/>
 					<img src="${pageContext.request.contextPath}/images/${p.vignette}">	<br/>
-					<c:out value="${p.desc_courte }"/>	<br/>	
+					<c:out value="${p.desc_courte }"/>	<br/>
+					<a href="${pageContext.request.contextPath}/spring/infosProduit?produit=${p.id}">Plus d'informations sur ce produit</a>	
 					<hr/>	
 				</li>			
 			</c:forEach>
 		</ul>
 </fieldset>
-
 
 </body>
 </html>

@@ -22,5 +22,13 @@ public class ProduitCtrl {
 		return "/produits.jsp";
 	}
 	
+	@org.springframework.web.bind.annotation.RequestMapping("infosProduit")
+	public String showProduitsByHisId(@org.springframework.web.bind.annotation.RequestParam("produit") String id, java.util.Map<String, Object> attributs){
+		System.out.println("ProduitCtrl.showProduitsByHisId()");
+		int idconverti = Integer.parseInt(id);
+		attributs.put("infosProduit", this.gestionnaireYaka.getProduitByHisId(idconverti));
+		return "/infosProduit.jsp";
+	}
+	
 	
 }
