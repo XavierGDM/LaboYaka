@@ -20,5 +20,10 @@
 			<hr/>
 </fieldset>
 
+
+<fieldset>
+	<legend>Configuration produit</legend>
+		<c:set></c:set>
+</fieldset>
 </body>
 </html>

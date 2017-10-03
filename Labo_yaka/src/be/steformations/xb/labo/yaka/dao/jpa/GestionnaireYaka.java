@@ -1,5 +1,6 @@
 package be.steformations.xb.labo.yaka.dao.jpa;
 
+import be.steformations.xb.labo.yaka.beans.Caracteristique;
 import be.steformations.xb.labo.yaka.beans.Categorie;
 import be.steformations.xb.labo.yaka.beans.Produit;
 import be.steformations.xb.labo.yaka.beans.SousCategorie;
@@ -33,4 +34,10 @@ public class GestionnaireYaka {
 	public Object getProduitByHisId(int id) {
 		return this.em.find(Produit.class, id); 
 	}
+
+	public Object getCaracteristiqueByIdProduit(int id) {
+		return this.em.createNamedQuery("getCaracteristiqueByIdProduit", Caracteristique.class).setParameter("id", id).getResultList();
+	}
+	
+	
 }
