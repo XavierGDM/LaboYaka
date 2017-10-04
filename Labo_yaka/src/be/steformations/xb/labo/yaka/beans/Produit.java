@@ -10,10 +10,18 @@ public class Produit {
 	private String desc_longue;
 	private int prod_stat;
 	private SousCategorie sousCategorie;
+	private java.util.List<Produit> sousProduit;
 //	private java.util.List<Caracteristique> caracteristiques;
+	
 	
 	public int getId() {
 		return id;
+	}
+	public java.util.List<Produit> getSousProduit() {
+		return sousProduit;
+	}
+	public void setSousProduit(java.util.List<Produit> sousProduit) {
+		this.sousProduit = sousProduit;
 	}
 	public void setId(int id) {
 		this.id = id;

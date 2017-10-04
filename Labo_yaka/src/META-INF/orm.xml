@@ -60,18 +60,24 @@
 			<basic name="desc_longue"><column name="prod_descr_longue"/></basic>
 			<basic name="prod_stat"><column name="prod_stat"/></basic>
 			<many-to-one name="sousCategorie"><join-column name="prod_fk_sous_categories"/></many-to-one>
+			<many-to-many name="sousProduit">
+				<join-table name="relations">
+					<join-column name="rel_fk_produits_princ" />
+					<inverse-join-column name="ref_fk_produits_sec"/>
+				</join-table>
+			</many-to-many>
 		</attributes>
 		</entity>
 		
-		<entity class="be.steformations.xb.labo.yaka.beans.Caracteristique" name="Caracteristique">
-		<table name="caracteristiques"/>
-		<attributes>
-			<id name="id"><column name="car_id"/><generated-value strategy="IDENTITY"/></id>
-			<basic name="valeur"><column name="car_valeur"/></basic>
-			<many-to-one name="propriete"><join-column name="car_fk_proprietes"/></many-to-one>
-			<many-to-one name="produit"><join-column name="car_fk_produits"/></many-to-one>
-		</attributes>
-		</entity> 
+<!-- 		<entity class="be.steformations.xb.labo.yaka.beans.Caracteristique" name="Caracteristique"> -->
+<!-- 		<table name="caracteristiques"/> -->
+<!-- 		<attributes> -->
+<!-- 			<id name="id"><column name="car_id"/><generated-value strategy="IDENTITY"/></id> -->
+<!-- 			<basic name="valeur"><column name="car_valeur"/></basic> -->
+<!-- 			<many-to-one name="propriete"><join-column name="car_fk_proprietes"/></many-to-one> -->
+<!-- 			<many-to-one name="produit"><join-column name="car_fk_produits"/></many-to-one> -->
+<!-- 		</attributes> -->
+<!-- 		</entity>  -->
 		
 </entity-mappings>
 	

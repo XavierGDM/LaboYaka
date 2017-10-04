@@ -8,22 +8,31 @@
 <title>Infos Produit</title>
 </head>
 <body>
-	
+
 <a href="${pageContext.request.contextPath}/spring/categories"><h1>YAKA</h1></a>
 
+		<c:set var="i" value="${requestScope['infosProduit']}"></c:set>
 <fieldset>
 	<legend>Infos Produit</legend>
-		<c:set var="i" value="${requestScope['infosProduit']}"></c:set>
 			<c:out value="${i.nom}" /><br/>
 			<img src="${pageContext.request.contextPath}/images/${i.image}"><br/>
 			<c:out escapeXml="false" value="${i.desc_longue }"/><br/>
 			<hr/>
 </fieldset>
 
-
 <fieldset>
-	<legend>Configuration produit</legend>
-		<c:set></c:set>
+	<legend>Sous produits</legend>
+		<ul>
+			<c:forEach var="p" items="${i.sousProduit}">
+				<li>
+					<c:out value="${p.nom}" /><br/>
+					<img src="${pageContext.request.contextPath}/images/${p.vignette}">	<br/>
+					<c:out value="${p.desc_courte }"/>	<br/>	
+					<hr/>	
+				</li>			
+			</c:forEach>
+		</ul>
 </fieldset>
+
 </body>
 </html>
