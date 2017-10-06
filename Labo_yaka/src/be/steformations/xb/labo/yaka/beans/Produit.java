@@ -11,9 +11,14 @@ public class Produit {
 	private int prod_stat;
 	private SousCategorie sousCategorie;
 	private java.util.List<Produit> sousProduit;
-//	private java.util.List<Caracteristique> caracteristiques;
+	private java.util.List<Caracteristique> caracteristiques;
 	
-	
+	public java.util.List<Caracteristique> getCaracteristiques() {
+		return caracteristiques;
+	}
+	public void setCaracteristiques(java.util.List<Caracteristique> caracteristiques) {
+		this.caracteristiques = caracteristiques;
+	}
 	public int getId() {
 		return id;
 	}

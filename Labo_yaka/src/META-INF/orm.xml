@@ -27,6 +27,16 @@
 		<named-query name="getProduitByHisId">
 			<query>select p from Produit as p where p.id = :id</query>
 		</named-query>
+		
+		<named-query name="getCaracteristiquesByProduit">
+			<query>select c from Caracteristique as c where c.produit.id = :id and c.propriete.id = :idProp </query>
+		</named-query>
+		
+		<named-query name="getProprieteByProduit">
+			<query>select p from Propriete as p where p.id = :idProp</query>
+		</named-query>
+
+
 <!-- 		<named-query name="getCategorieById"> -->
 <!-- 			<query>select c from Categorie as c where c.id = </query> -->
 <!-- 		</named-query> -->
@@ -69,15 +79,24 @@
 		</attributes>
 		</entity>
 		
-<!-- 		<entity class="be.steformations.xb.labo.yaka.beans.Caracteristique" name="Caracteristique"> -->
-<!-- 		<table name="caracteristiques"/> -->
-<!-- 		<attributes> -->
-<!-- 			<id name="id"><column name="car_id"/><generated-value strategy="IDENTITY"/></id> -->
-<!-- 			<basic name="valeur"><column name="car_valeur"/></basic> -->
-<!-- 			<many-to-one name="propriete"><join-column name="car_fk_proprietes"/></many-to-one> -->
-<!-- 			<many-to-one name="produit"><join-column name="car_fk_produits"/></many-to-one> -->
-<!-- 		</attributes> -->
-<!-- 		</entity>  -->
+		
+		<entity class="be.steformations.xb.labo.yaka.beans.Caracteristique" name="Caracteristique">
+		<table name="caracteristiques"/>
+		<attributes>
+			<id name="id"><column name="car_id"/><generated-value strategy="IDENTITY"/></id>
+			<basic name="valeur"><column name="car_valeur"/></basic>
+			<many-to-one name="propriete"><join-column name="car_fk_proprietes"/></many-to-one>
+			<many-to-one name="produit"><join-column name="car_fk_produits"/></many-to-one>
+		</attributes>
+		</entity> 
+		
+		<entity class="be.steformations.xb.labo.yaka.beans.Propriete">
+			<table name="proprietes"></table>
+			<attributes>
+				<id name="id"><column name="prop_id"/><generated-value strategy="IDENTITY"/></id>
+				<basic name="nom"><column name="prop_nom"/></basic>
+			</attributes>
+		</entity>
 		
 </entity-mappings>
 	

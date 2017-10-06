@@ -1,8 +1,12 @@
 package be.steformations.xb.labo.yaka.dao.jpa;
 
+import java.util.List;
+
 import be.steformations.xb.labo.yaka.beans.Caracteristique;
+import be.steformations.xb.labo.yaka.beans.CaracteristiquesProduit;
 import be.steformations.xb.labo.yaka.beans.Categorie;
 import be.steformations.xb.labo.yaka.beans.Produit;
+import be.steformations.xb.labo.yaka.beans.Propriete;
 import be.steformations.xb.labo.yaka.beans.SousCategorie;
 
 @org.springframework.stereotype.Service
@@ -33,11 +37,20 @@ public class GestionnaireYaka {
 	
 	public Object getProduitByHisId(int id) {
 		return this.em.find(Produit.class, id); 
+//		return this.em.createNamedQuery("getProduitByHisId", Produit.class).setParameter("id", id).getResultList();
 	}
 
-	public Object getCaracteristiqueByIdProduit(int id) {
-		return this.em.createNamedQuery("getCaracteristiqueByIdProduit", Caracteristique.class).setParameter("id", id).getResultList();
+	public java.util.List<Caracteristique> getCaracteristiquesByProduit(int id, int idProp) {
+		return this.em.createNamedQuery("getCaracteristiquesByProduit", Caracteristique.class).setParameter("id", id).setParameter("idProp", idProp).getResultList();
 	}
+
+	public java.util.List<Propriete> getProprieteByProduit(int idProp) {
+		return this.em.createNamedQuery("getProprieteByProduit", Propriete.class).setParameter("idProp", idProp).getResultList();
+	}
+
+//	public Object getCaracteristiqueByIdProduit(int id) {
+//		return this.em.createNamedQuery("getCaracteristiqueByIdProduit", Caracteristique.class).setParameter("id", id).getResultList();
+//	}
 
 	
 	

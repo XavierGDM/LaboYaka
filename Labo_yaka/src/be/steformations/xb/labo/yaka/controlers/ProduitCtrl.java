@@ -3,7 +3,11 @@ package be.steformations.xb.labo.yaka.controlers;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.jasper.tagplugins.jstl.core.ForEach;
+
 import be.steformations.xb.labo.yaka.beans.Caracteristique;
+import be.steformations.xb.labo.yaka.beans.CaracteristiquesProduit;
+import be.steformations.xb.labo.yaka.beans.Propriete;
 import be.steformations.xb.labo.yaka.dao.jpa.GestionnaireYaka;
 
 @org.springframework.stereotype.Controller
@@ -31,6 +35,7 @@ public class ProduitCtrl {
 		System.out.println("ProduitCtrl.showProduitsByHisId()");
 		int idconverti = Integer.parseInt(id);
 		attributs.put("infosProduit", this.gestionnaireYaka.getProduitByHisId(idconverti));
+		attributs.put("caracteristiques", this.listeCaracteristiques(idconverti));
 		return "/infosProduit.jsp";
 	}
 	
@@ -40,6 +45,54 @@ public class ProduitCtrl {
 		attributs.put("sousProduit", this.gestionnaireYaka.getProduitByHisId(idconverti));
 		return "/infosProduit.jsp";
 	}
+//	@org.springframework.web.bind.annotation.RequestMapping("caracteristiquesProduit")
+	public List<CaracteristiquesProduit> showCaracteristiques(@org.springframework.web.bind.annotation.RequestParam("produit") String id,
+			@org.springframework.web.bind.annotation.RequestParam("propriete") String idProp
+			, java.util.Map<String, Object> attributs){
+		System.out.println("ProduitCtrl.showCaracteristiques()");
+		List<CaracteristiquesProduit> listeProp = new ArrayList<>();
+		int idconverti = Integer.parseInt(id);
+		int idPropConv = Integer.parseInt(idProp);
+		attributs.put("caracteristiques", this.gestionnaireYaka.getCaracteristiquesByProduit(idconverti, idPropConv));
+		return listeProp;
+	}
+	
+	@org.springframework.web.bind.annotation.RequestMapping("caracteristiquesProduit")
+	public List<CaracteristiquesProduit> listeCaracteristiques(int idProp){
+		System.out.println("ProduitCtrl.listeCaracteristiques()");
+		List<CaracteristiquesProduit> caracteristiquesProduit = new ArrayList<>();
+		System.out.println("idProp == " + idProp);
+		System.out.println("==============================" + gestionnaireYaka.getProprieteByProduit(idProp).size());
+		//afficher caracteristique d'abord puis ensuite propriete
+		
+		for(Propriete prop : gestionnaireYaka.getProprieteByProduit(idProp)){
+			System.out.println("ProduitCtrl.listeCaracteristiques()");
+			CaracteristiquesProduit cp = new CaracteristiquesProduit();
+			List<Caracteristique> listCar = new ArrayList<>();
+			listCar = gestionnaireYaka.getCaracteristiquesByProduit(prop.getId(), idProp);
+			cp.setPropriete(prop);
+			cp.setCaracteristiques(listCar);
+			caracteristiquesProduit.add(cp);
+		}
+		System.out.println("ProduitCtrl.listeCaracteristiques() == ");
+		System.out.println(caracteristiquesProduit.size());
+		return caracteristiquesProduit;
+	}
+//	private List<CaracByProprietes> listeCaracteristiques(int idp){
+//        System.out.println("ProduitCtrl.afficherProduit(" + idp + ")");
+////        gestionnaire.addStatProduit(idp);
+//        List<CaracByProprietes> carByProp = new ArrayList<>();
+//        for (ProprieteImpl prop : gestionnaire.getProprietesbyProduitId(idp)){
+//            System.out.println("ProduitCtrl propId= " + gestionnaire.getProprietesbyProduitId(idp));
+//            CaracByProprietes cbp = new CaracByProprietes();
+//            List<CaracteristiqueImpl> listCar = new ArrayList<>();
+//            listCar = gestionnaire.getCaracteristiquesbyProprieteId(prop.getId(), idp);
+//            cbp.setProp(prop);
+//            cbp.setCarac(listCar);
+//            carByProp.add(cbp);
+//        }
+//        return carByProp;
+//    }
 	
 //	@org.springframework.web.bind.annotation.RequestMapping("caracteristique")
 //	public String showCaracteristiquesByIdProduit(@org.springframework.web.bind.annotation.RequestParam("produit") String id, java.util.Map<String, Object> attributs){
