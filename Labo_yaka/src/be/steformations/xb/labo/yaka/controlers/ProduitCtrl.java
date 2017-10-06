@@ -57,20 +57,21 @@ public class ProduitCtrl {
 		return listeProp;
 	}
 	
+	//essai affichage categories
 	@org.springframework.web.bind.annotation.RequestMapping("caracteristiquesProduit")
-	public List<CaracteristiquesProduit> listeCaracteristiques(int idProp){
+	public List<CaracteristiquesProduit> listeCaracteristiques(int idProp, int id){
 		System.out.println("ProduitCtrl.listeCaracteristiques()");
 		List<CaracteristiquesProduit> caracteristiquesProduit = new ArrayList<>();
 		System.out.println("idProp == " + idProp);
 		System.out.println("==============================" + gestionnaireYaka.getProprieteByProduit(idProp).size());
-		//afficher caracteristique d'abord puis ensuite propriete
+		//afficher caracteristique d'abord puis ensuite propriete (chaque carac contient des proprietes) a partir de la carac on y a accès
 		
-		for(Propriete prop : gestionnaireYaka.getProprieteByProduit(idProp)){
+		for(Caracteristique carac : gestionnaireYaka.getCaracteristiquesByProduit(id, idProp)){
 			System.out.println("ProduitCtrl.listeCaracteristiques()");
 			CaracteristiquesProduit cp = new CaracteristiquesProduit();
 			List<Caracteristique> listCar = new ArrayList<>();
-			listCar = gestionnaireYaka.getCaracteristiquesByProduit(prop.getId(), idProp);
-			cp.setPropriete(prop);
+			listCar = gestionnaireYaka.getCaracteristiquesByProduit(carac.getId(), idProp);
+			//cp.setCaracteristiques(????);
 			cp.setCaracteristiques(listCar);
 			caracteristiquesProduit.add(cp);
 		}
@@ -78,6 +79,31 @@ public class ProduitCtrl {
 		System.out.println(caracteristiquesProduit.size());
 		return caracteristiquesProduit;
 	}
+	
+	///CETTE VERSION DE LA FONCTION AFFICHE UNE SEULE DES CARACTERISTIQUE/PROPRIETE
+//	@org.springframework.web.bind.annotation.RequestMapping("caracteristiquesProduit")
+//	public List<CaracteristiquesProduit> listeCaracteristiques(int idProp){
+//		System.out.println("ProduitCtrl.listeCaracteristiques()");
+//		List<CaracteristiquesProduit> caracteristiquesProduit = new ArrayList<>();
+//		System.out.println("idProp == " + idProp);
+//		System.out.println("==============================" + gestionnaireYaka.getProprieteByProduit(idProp).size());
+//		//afficher caracteristique d'abord puis ensuite propriete
+//		
+//		for(Propriete prop : gestionnaireYaka.getProprieteByProduit(idProp)){
+//			System.out.println("ProduitCtrl.listeCaracteristiques()");
+//			CaracteristiquesProduit cp = new CaracteristiquesProduit();
+//			List<Caracteristique> listCar = new ArrayList<>();
+//			listCar = gestionnaireYaka.getCaracteristiquesByProduit(prop.getId(), idProp);
+//			cp.setPropriete(prop);
+//			cp.setCaracteristiques(listCar);
+//			caracteristiquesProduit.add(cp);
+//		}
+//		System.out.println("ProduitCtrl.listeCaracteristiques() == ");
+//		System.out.println(caracteristiquesProduit.size());
+//		return caracteristiquesProduit;
+//	}
+	
+	
 //	private List<CaracByProprietes> listeCaracteristiques(int idp){
 //        System.out.println("ProduitCtrl.afficherProduit(" + idp + ")");
 ////        gestionnaire.addStatProduit(idp);
