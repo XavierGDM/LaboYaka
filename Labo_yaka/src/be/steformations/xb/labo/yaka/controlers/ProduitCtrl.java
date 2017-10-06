@@ -35,7 +35,7 @@ public class ProduitCtrl {
 		System.out.println("ProduitCtrl.showProduitsByHisId()");
 		int idconverti = Integer.parseInt(id);
 		attributs.put("infosProduit", this.gestionnaireYaka.getProduitByHisId(idconverti));
-		attributs.put("caracteristiques", this.listeCaracteristiques(idconverti));
+		attributs.put("caracteristiques", this.listeCaracteristiques(idconverti, idconverti));
 		return "/infosProduit.jsp";
 	}
 	
