@@ -48,6 +48,7 @@ public class GestionnaireYaka {
 		return this.em.createNamedQuery("getProprieteByProduit", Propriete.class).setParameter("idProp", idProp).getResultList();
 	}
 
+	
 //	public Object getCaracteristiqueByIdProduit(int id) {
 //		return this.em.createNamedQuery("getCaracteristiqueByIdProduit", Caracteristique.class).setParameter("id", id).getResultList();
 //	}
